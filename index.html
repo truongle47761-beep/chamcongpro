@@ -54,8 +54,8 @@ function toggleAuthMode(e){
 }
 $('toggleAuth').addEventListener('click',toggleAuthMode);
 const sb=window.supabase?.createClient ? window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY) : null;
-let user=null,shifts=[],templates=[],tab="home",calMonth=new Date(),selectedDate=iso(new Date());
 const money=n=>new Intl.NumberFormat('vi-VN').format(Number(n)||0)+'đ', iso=d=>{let x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}, mins=t=>{let [h,m]=String(t||'0:0').split(':').map(Number);return h*60+m}, dur=s=>{let n=Math.max(0,mins(s.end_time)-mins(s.start_time));return n}, fmt=n=>{let h=Math.floor(n/60),m=n%60;return h+'h'+(m?String(m).padStart(2,'0')+'p':'')}, dateVN=s=>new Date(s+'T00:00:00').toLocaleDateString('vi-VN');
+let user=null,shifts=[],templates=[],tab="home",calMonth=new Date(),selectedDate=iso(new Date());
 function notify(m){alert(m)}function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}
 async function init(){if(!sb){show('auth');$('authMsg').textContent='Chưa tải được thư viện đăng nhập. Hãy kiểm tra mạng rồi tải lại trang.';return}const {data:{session}}=await sb.auth.getSession();if(session){user=session.user;await enter()}else show('auth');sb.auth.onAuthStateChange(async(_e,s)=>{if(s&&!user){user=s.user;await enter()}else if(!s){user=null;show('auth');hide('app')}})}
 
