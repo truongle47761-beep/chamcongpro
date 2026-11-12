@@ -41,13 +41,25 @@ window.addEventListener('error', function(e) {
 <script>
 const SUPABASE_URL="https://vodcxrzrzzjzizjxoavt.supabase.co";
 const SUPABASE_KEY="sb_publishable_7uWNi61gCrTnJQAFbMBP4w_hCb3sa2S";
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-let user=null,shifts=[],templates=[],tab="home",calMonth=new Date(),selectedDate=iso(new Date()),signup=false;
-const $=id=>document.getElementById(id), money=n=>new Intl.NumberFormat('vi-VN').format(Number(n)||0)+'đ', iso=d=>{let x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}, mins=t=>{let [h,m]=String(t||'0:0').split(':').map(Number);return h*60+m}, dur=s=>{let n=Math.max(0,mins(s.end_time)-mins(s.start_time));return n}, fmt=n=>{let h=Math.floor(n/60),m=n%60;return h+'h'+(m?String(m).padStart(2,'0')+'p':'')}, dateVN=s=>new Date(s+'T00:00:00').toLocaleDateString('vi-VN');
+const $=id=>document.getElementById(id);
+let signup=false;
+function toggleAuthMode(e){
+  if(e)e.preventDefault();
+  signup=!signup;
+  $('authTitle').textContent=signup?'Tạo tài khoản':'Đăng nhập';
+  $('authSubmit').textContent=signup?'Đăng ký':'Đăng nhập';
+  $('toggleAuth').textContent=signup?'Đã có tài khoản? Đăng nhập':'Chưa có tài khoản? Đăng ký';
+  $('password').setAttribute('autocomplete',signup?'new-password':'current-password');
+  $('authMsg').textContent='';
+}
+$('toggleAuth').addEventListener('click',toggleAuthMode);
+const sb=window.supabase?.createClient ? window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY) : null;
+let user=null,shifts=[],templates=[],tab="home",calMonth=new Date(),selectedDate=iso(new Date());
+const money=n=>new Intl.NumberFormat('vi-VN').format(Number(n)||0)+'đ', iso=d=>{let x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')}, mins=t=>{let [h,m]=String(t||'0:0').split(':').map(Number);return h*60+m}, dur=s=>{let n=Math.max(0,mins(s.end_time)-mins(s.start_time));return n}, fmt=n=>{let h=Math.floor(n/60),m=n%60;return h+'h'+(m?String(m).padStart(2,'0')+'p':'')}, dateVN=s=>new Date(s+'T00:00:00').toLocaleDateString('vi-VN');
 function notify(m){alert(m)}function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}
-async function init(){const {data:{session}}=await sb.auth.getSession();if(session){user=session.user;await enter()}else show('auth');sb.auth.onAuthStateChange(async(_e,s)=>{if(s&&!user){user=s.user;await enter()}else if(!s){user=null;show('auth');hide('app')}})}
-$('toggleAuth').onclick=e=>{e.preventDefault();signup=!signup;$('authTitle').textContent=signup?'Tạo tài khoản':'Đăng nhập';$('authSubmit').textContent=signup?'Đăng ký':'Đăng nhập';$('toggleAuth').textContent=signup?'Đã có tài khoản? Đăng nhập':'Chưa có tài khoản? Đăng ký'};
-$('authSubmit').onclick=async()=>{let email=$('email').value.trim(),password=$('password').value;if(!email||password.length<6)return $('authMsg').textContent='Nhập email và mật khẩu tối thiểu 6 ký tự.';$('authSubmit').disabled=true;let r=signup?await sb.auth.signUp({email,password}):await sb.auth.signInWithPassword({email,password});$('authSubmit').disabled=false;if(r.error)return $('authMsg').textContent=r.error.message;if(signup&&!r.data.session)return $('authMsg').textContent='Đã tạo tài khoản. Kiểm tra email để xác nhận, sau đó đăng nhập.';user=r.data.user;await enter()};
+async function init(){if(!sb){show('auth');$('authMsg').textContent='Chưa tải được thư viện đăng nhập. Hãy kiểm tra mạng rồi tải lại trang.';return}const {data:{session}}=await sb.auth.getSession();if(session){user=session.user;await enter()}else show('auth');sb.auth.onAuthStateChange(async(_e,s)=>{if(s&&!user){user=s.user;await enter()}else if(!s){user=null;show('auth');hide('app')}})}
+
+$('authSubmit').onclick=async()=>{if(!sb){$('authMsg').textContent='Chưa tải được thư viện đăng nhập. Hãy kiểm tra mạng rồi tải lại trang.';return}let email=$('email').value.trim(),password=$('password').value;if(!email||password.length<6)return $('authMsg').textContent='Nhập email và mật khẩu tối thiểu 6 ký tự.';$('authSubmit').disabled=true;let r=signup?await sb.auth.signUp({email,password}):await sb.auth.signInWithPassword({email,password});$('authSubmit').disabled=false;if(r.error)return $('authMsg').textContent=r.error.message;if(signup&&!r.data.session)return $('authMsg').textContent='Đã tạo tài khoản. Kiểm tra email để xác nhận, sau đó đăng nhập.';user=r.data.user;await enter()};
 async function enter(){hide('auth');show('app');$('userEmail').textContent=user.email||'';$('date').value=iso(new Date());$('periodDate').value=iso(new Date()).slice(0,7);await loadAll()}
 async function loadAll(){if(!user)return;$('syncState').textContent='● Đang tải';let [a,b]=await Promise.all([sb.from('shifts').select('*').order('work_date',{ascending:false}),sb.from('templates').select('*').order('created_at')]);if(a.error||b.error){$('syncState').textContent='⚠ Chưa cấu hình';notify('Chưa tải được dữ liệu. Hãy chạy file supabase/schema.sql trong SQL Editor của Supabase.\n'+(a.error?.message||b.error?.message));return}shifts=a.data||[];templates=b.data||[];$('syncState').textContent='● Đã đồng bộ';renderAll()}
 function renderAll(){renderHome();renderCalendar();renderStats();renderTemplates()}
