@@ -178,7 +178,7 @@ function openExportModal(){
 function closeExportModal(){hide('exportModal')}
 function toggleExportDate(){let day=$('exportMode').value==='day';$('exportDayField').classList.toggle('hidden',!day);$('exportMonthField').classList.toggle('hidden',day)}
 function createFilteredPDF(){
- const mode=$('exportMode').value,period=mode==='day'?$ ('exportDay').value:$('exportMonth').value;
+ const mode=$('exportMode').value,period=mode==='day'?$('exportDay').value:$('exportMonth').value;
  if(!period)return notify(mode==='day'?'Bạn hãy chọn ngày cần xuất.':'Bạn hãy chọn tháng cần xuất.');
  const company=$('exportCompany').value,position=$('exportPosition').value;
  const rows=shifts.filter(s=>(mode==='day'?s.work_date===period:s.work_date.startsWith(period))&&(!company||s.company===company)&&(!position||(s.position||'')===position)).sort((a,b)=>a.work_date.localeCompare(b.work_date)||a.start_time.localeCompare(b.start_time));
