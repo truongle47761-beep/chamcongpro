@@ -461,7 +461,7 @@ function renderStats(){
   let positionOk=!positionChoice||fold(s.position)===fold(positionChoice);
   let searchOk=!q||(fold(s.company).includes(q)||fold(s.position).includes(q));
   return ok&&companyOk&&positionOk&&searchOk;
- });
+ }).sort((a,b)=>a.work_date.localeCompare(b.work_date)||String(a.start_time||'').localeCompare(String(b.start_time||'')));
  $('statsRows').innerHTML=rows.map(s=>{let h=dur(s)/60,actual=s.actual_checkin&&s.actual_checkout?Math.max(0,(mins(s.actual_checkout)-mins(s.actual_checkin))/60):0,passed=isPassedShift(s),base=passed?0:h*Number(s.hourly_wage),extra=passed?0:Number(s.extra_pay||0),net=base+extra;return '<tr><td>'+dateVN(s.work_date)+'</td><td>'+esc(s.company)+'</td><td>'+(s.completed?'Hoàn thành':'Chưa hoàn thành')+'</td><td>'+timeHM(s.start_time)+' – '+timeHM(s.end_time)+'</td><td>'+(s.actual_checkin?timeHM(s.actual_checkin):'—')+'</td><td>'+(s.actual_checkout?timeHM(s.actual_checkout):'—')+'</td><td>'+fmt(dur(s))+'</td><td>'+actual.toFixed(2)+'h</td><td>'+money(s.hourly_wage)+'</td><td>'+money(extra)+'</td><td>'+money(base)+'</td><td><b>'+money(net)+'</b></td><td>'+esc(s.notes||'')+'</td></tr>'}).join('');
  let groups={};rows.forEach(s=>{let key=s.company+'||'+(s.position||'Chưa phân vị trí');if(!groups[key])groups[key]={company:s.company,position:s.position||'Chưa phân vị trí',count:0,minutes:0,base:0,extra:0};let g=groups[key],h=dur(s)/60,passed=isPassedShift(s);g.count++;g.minutes+=dur(s);g.base+=passed?0:h*Number(s.hourly_wage||0);g.extra+=passed?0:Number(s.extra_pay||0)});
  let sums=Object.values(groups);
