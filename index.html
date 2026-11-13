@@ -219,7 +219,45 @@ body.theme-neon .total{background:#30204c;color:#dfcaff}
 body.theme-neon .theme-switch{background:rgba(20,24,47,.8);border-color:rgba(145,113,255,.35)}body.theme-neon .theme-switch button.active{background:linear-gradient(120deg,#9657e9,#00bcd4);box-shadow:0 0 14px rgba(0,220,255,.2)}
 @media(max-width:420px){.top-tools{gap:5px;flex-direction:column;align-items:flex-end}.theme-switch button{padding:7px 8px;font-size:10px}.top{gap:7px}.brand b{font-size:15px}}
 @media(prefers-reduced-motion:no-preference){body,.hero,.stat,.panel,.shift,.tabs,.theme-switch{transition:background .28s,border-color .28s,box-shadow .28s,color .28s}}
-.transfer-note{display:inline-flex!important;width:max-content;max-width:100%;padding:4px 8px;border-radius:999px;background:rgba(151,112,220,.12);color:#8860bd;font-size:11px!important;font-weight:700;margin:4px 0!important}\n</style></head>
+.transfer-note{display:inline-flex!important;width:max-content;max-width:100%;padding:4px 8px;border-radius:999px;background:rgba(151,112,220,.12);color:#8860bd;font-size:11px!important;font-weight:700;margin:4px 0!important}\n
+/* ACCESSIBILITY: improve text contrast in both visual themes */
+body.theme-glass{--ink:#25213a;--muted:#625d76}
+body.theme-glass .sectionhead h2,body.theme-glass .brand b,body.theme-glass .stat strong,body.theme-glass .shift h3,body.theme-glass .panel,body.theme-glass .shift,body.theme-glass .modalbox,body.theme-glass .detail-modalbox,body.theme-glass .detail-section h4{color:#29243d}
+body.theme-glass .muted,body.theme-glass .shift p,body.theme-glass .stat small,body.theme-glass .field label,body.theme-glass .brand small,body.theme-glass .detail-modalhead small,body.theme-glass .detail-item small,body.theme-glass .detail-time-card small,body.theme-glass .detail-time-card em,body.theme-glass .detail-money-row{color:#625b76}
+body.theme-glass .detail-item b,body.theme-glass .detail-time-card strong,body.theme-glass .detail-money-row b,body.theme-glass .detail-note{color:#39314d}
+body.theme-glass .day{color:#302944}
+body.theme-glass .tabs button{color:#625d76}
+body.theme-glass .tabs button.active{color:#6549bd}
+body.theme-glass th{color:#514866}
+body.theme-glass td{color:#373047}
+body.theme-glass .filter-hint{color:#665780}
+body.theme-glass .total{color:#59428f}
+body.theme-glass .detail-hero p{color:#594d6d}
+body.theme-neon{--muted:#c0c6e2}
+body.theme-neon .sectionhead h2,body.theme-neon .brand b,body.theme-neon .stat strong,body.theme-neon .panel,body.theme-neon .shift,body.theme-neon .modalbox,body.theme-neon .detail-modalbox,body.theme-neon .detail-section h4{color:#f4f5ff}
+body.theme-neon .muted,body.theme-neon .shift p,body.theme-neon .stat small,body.theme-neon .field label,body.theme-neon .brand small,body.theme-neon .detail-modalhead small,body.theme-neon .detail-item small,body.theme-neon .detail-time-card small,body.theme-neon .detail-time-card em,body.theme-neon .detail-money-row,body.theme-neon .filter-hint{color:#c0c6e2}
+body.theme-neon .detail-item b,body.theme-neon .detail-time-card strong,body.theme-neon .detail-money-row b,body.theme-neon .detail-note,body.theme-neon .detail-hero p{color:#edf0ff}
+body.theme-neon .detail-note{background:#202440;border:1px solid #3b4168}
+body.theme-neon .detail-time-card{background:#1b203b;border-color:#3a4067}
+body.theme-neon .detail-section{border-color:#3a4067}
+body.theme-neon .detail-actual-total,body.theme-neon .detail-money-total{background:#292344;color:#d5c9f4}
+body.theme-neon .detail-actual-total b,body.theme-neon .detail-money-total strong{color:#e4d5ff}
+body.theme-neon .tabs button{color:#c0c6e2}
+body.theme-neon .tabs button.active{color:#e0caff}
+body.theme-neon .pill{color:#eadfff}
+body.theme-neon .btn.light{color:#e4d6ff}
+body.theme-neon .tablewrap td{color:#e6e9ff}
+body.theme-neon .tablewrap th{color:#e8dcff}
+body.theme-neon .total{color:#f0e7ff}
+body.theme-neon .day{color:#f0efff}
+body.theme-neon .day-popover{background:#252342;color:#fff}
+body.theme-neon .day-popover b{color:#e2caff}
+body.theme-neon .day-popover .pop-empty{color:#ddd5ef}
+body.theme-neon .exportbox .modalhead h2{color:#e5d7ff}
+body.theme-neon .close{color:#e5d7ff}
+body.theme-neon input::placeholder,body.theme-neon textarea::placeholder{color:#9ca5c7;opacity:1}
+
+</style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
 <div id="auth" class="auth"><div class="authbox"><div class="brand"><div class="logo">✓</div><div><b>CHẤM CÔNG PRO</b><small>Quản lý ca làm thông minh</small></div></div><h1 id="authTitle">Đăng nhập</h1><p class="muted">Dữ liệu ca làm được đồng bộ theo tài khoản của bạn.</p><div class="field"><label>Email</label><input id="email" type="email" autocomplete="email" placeholder="you@example.com"></div><div class="field"><label>Mật khẩu</label><input id="password" type="password" autocomplete="current-password" placeholder="Ít nhất 6 ký tự"></div><button class="btn" style="width:100%" id="authSubmit">Đăng nhập</button><p style="text-align:center;font-size:13px"><a href="#" id="toggleAuth">Chưa có tài khoản? Đăng ký</a></p><p id="authMsg" class="muted"></p></div></div>
