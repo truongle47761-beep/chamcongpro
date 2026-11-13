@@ -289,6 +289,47 @@ body.theme-neon .shift-pay-tap.is-pop{background:rgba(35,210,145,.22);color:#8bf
  #modal #shiftForm .row .btn{padding:10px 7px;font-size:12px}
  #modal #shiftForm .grid2{gap:6px}
 }
+
+/* Modal typography + theme-aware contrast repair */
+#modal,#modal .modalbox,#modal .modalhead,#modal #shiftForm{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+#modal .modalhead{color:var(--ink)}
+#modal .modalhead h2{color:var(--ink);line-height:1.3;letter-spacing:-.25px}
+#modal #shiftForm .field label{color:var(--muted);line-height:1.4}
+#modal #shiftForm input,#modal #shiftForm select,#modal #shiftForm textarea{
+  color:var(--ink);font-family:inherit;font-size:16px;line-height:1.4;
+}
+#modal #shiftForm input::placeholder,#modal #shiftForm textarea::placeholder{color:var(--muted);opacity:.85}
+#modal #shiftForm .row{color:var(--ink)}
+body.theme-glass #modal .modalhead,body.theme-glass #modal #shiftForm .row{
+  background:rgba(248,247,255,.94);
+  color:#29263f;
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+body.theme-glass #modal .modalhead h2,
+body.theme-glass #modal #shiftForm .field label{color:#51466d}
+body.theme-glass #modal #shiftForm input,
+body.theme-glass #modal #shiftForm select,
+body.theme-glass #modal #shiftForm textarea{background:rgba(255,255,255,.96);color:#29263f;border-color:#ded7f1}
+body.theme-neon #modal .modalhead,body.theme-neon #modal #shiftForm .row{
+  background:rgba(20,24,47,.98);
+  color:#f1f2ff;
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+body.theme-neon #modal .modalhead h2{color:#f1f2ff}
+body.theme-neon #modal #shiftForm .field label{color:#c2b9e8}
+body.theme-neon #modal #shiftForm input,
+body.theme-neon #modal #shiftForm select,
+body.theme-neon #modal #shiftForm textarea{background:#11162b;color:#f5f3ff;border-color:#514477}
+body.theme-neon #modal #shiftForm input::placeholder,
+body.theme-neon #modal #shiftForm textarea::placeholder{color:#a0a6c7}
+body.theme-neon #modal #shiftForm select option{background:#11162b;color:#f5f3ff}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
