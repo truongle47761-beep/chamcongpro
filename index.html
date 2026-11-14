@@ -1501,6 +1501,60 @@ body.theme-neon #statsPage .stats-filters select,body.theme-neon #statsPage .sta
 body.theme-neon #statsPage .stats-filters select option{background:#11162b;color:#f1f2ff}
 body.theme-neon #statsPage .total{color:#f0e7ff!important}
 
+
+/* FINAL NEON CONTRAST OVERRIDE — only the three requested areas */
+body.theme-neon .shift-card-layout :is(h3,p,small,span,label,b,strong,em){
+  color:#202b42!important;
+  -webkit-text-fill-color:#202b42!important;
+  opacity:1!important;text-shadow:none!important;
+}
+body.theme-neon .shift-card-layout .shift-pay-label{color:#35445d!important;-webkit-text-fill-color:#35445d!important}
+body.theme-neon .shift-card-layout .shift-pay-tap{color:#183c59!important;-webkit-text-fill-color:#183c59!important}
+body.theme-neon .shift-card-layout .pill:not(.status-done):not(.status-pending):not(.status-notdone):not(.status-inactive){
+  color:#43345f!important;-webkit-text-fill-color:#43345f!important;
+}
+body.theme-neon .shift-card-layout .status-done,
+body.theme-neon .shift-card-layout .status-done *{color:#fff!important;-webkit-text-fill-color:#fff!important}
+
+/* Shift detail: dark ink on every pale information card; keep the dark modal header readable */
+body.theme-neon .detail-modalbox .detail-modalhead h2{color:#f7f4ff!important;-webkit-text-fill-color:#f7f4ff!important}
+body.theme-neon .detail-modalbox .detail-modalhead small{color:#d7d0e8!important;-webkit-text-fill-color:#d7d0e8!important}
+body.theme-neon .detail-modalbox :is(.detail-hero,.detail-section,.detail-time-card,.detail-item,.detail-note,.detail-actual-total,.detail-money-total){
+  color:#29243a!important;
+}
+body.theme-neon .detail-modalbox .detail-hero :is(h3,p,i,span,b,strong,small),
+body.theme-neon .detail-modalbox .detail-section :is(h4,p,span,b,strong,small,label,em),
+body.theme-neon .detail-modalbox .detail-time-card :is(span,small,strong,em),
+body.theme-neon .detail-modalbox .detail-item :is(span,small,b,strong),
+body.theme-neon .detail-modalbox .detail-money-row,
+body.theme-neon .detail-modalbox .detail-money-row b,
+body.theme-neon .detail-modalbox .detail-note,
+body.theme-neon .detail-modalbox .detail-actual-total,
+body.theme-neon .detail-modalbox .detail-actual-total b,
+body.theme-neon .detail-modalbox .detail-money-total,
+body.theme-neon .detail-modalbox .detail-money-total strong{
+  color:#302943!important;-webkit-text-fill-color:#302943!important;opacity:1!important;text-shadow:none!important;
+}
+
+/* Statistics: bright section heading on the dark page, readable dark controls on the dark filter panel */
+body.theme-neon #statsPage>.sectionhead h2{
+  color:#f7f4ff!important;-webkit-text-fill-color:#f7f4ff!important;text-shadow:0 1px 8px rgba(160,120,255,.22)!important;
+}
+body.theme-neon #statsPage>.panel .stats-filters :is(select,input){
+  background:#11162b!important;color:#f5f2ff!important;-webkit-text-fill-color:#f5f2ff!important;
+  border-color:#514477!important;opacity:1!important;color-scheme:dark!important;
+}
+body.theme-neon #statsPage>.panel .stats-filters select option{background:#11162b!important;color:#f5f2ff!important}
+body.theme-neon #statsPage>.panel .filter-hint,
+body.theme-neon #statsPage>.panel .stats-filters label{
+  color:#d7d0e8!important;-webkit-text-fill-color:#d7d0e8!important;opacity:1!important;
+}
+body.theme-neon #statsPage>.panel h3{color:#f3efff!important;-webkit-text-fill-color:#f3efff!important}
+body.theme-neon #statsPage>.panel .total{
+  background:linear-gradient(110deg,#e9ddff,#fceafa)!important;
+  color:#302442!important;-webkit-text-fill-color:#302442!important;border:1px solid #d9c9f0!important;
+}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
