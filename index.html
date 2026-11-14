@@ -522,7 +522,7 @@ body.theme-neon #modal #shiftForm input,body.theme-neon #modal #shiftForm select
 body.theme-neon #modal #shiftForm input::placeholder,body.theme-neon #modal #shiftForm textarea::placeholder{color:#9189a4!important}
 @media(hover:hover){body.theme-neon .btn:hover,body.theme-neon button.btn:hover{transform:translateY(-1px);filter:brightness(1.035);box-shadow:0 0 0 1px #fff,0 0 22px rgba(160,112,255,.55),0 7px 18px rgba(119,83,190,.18)!important}}
 
-/* NEON TEXT LEGIBILITY PASS
+/* NEON TEXT LEGIBILITY PASS — repaired */
 body.theme-neon{font-weight:500;-webkit-font-smoothing:antialiased}
 body.theme-neon #app,body.theme-neon main,body.theme-neon section,
 body.theme-neon .page,body.theme-neon .panel,body.theme-neon .hero,
@@ -570,6 +570,148 @@ body.theme-neon input,body.theme-neon select,body.theme-neon textarea{
 body.theme-neon input::placeholder,body.theme-neon textarea::placeholder{color:#746b86!important;opacity:1!important}
 body.theme-neon table,body.theme-neon td,body.theme-neon th{color:#302943!important}
 body.theme-neon .status-done,body.theme-neon .btn.status-done{color:#fff!important}
+
+/* NEON CONTRAST REPAIR v2 — detail, statistics, all labels and secondary text */
+body.theme-neon{font-weight:500;-webkit-font-smoothing:antialiased}
+body.theme-neon .detail-modalbox,
+body.theme-neon #statsPage,
+body.theme-neon #statsPage>.panel,
+body.theme-neon #statsPage .tablewrap,
+body.theme-neon #planningPage .panel,
+body.theme-neon #templatesPage .panel,
+body.theme-neon #settingsPage .panel{
+ color:#29223d!important;
+}
+body.theme-neon .detail-modalbox,
+body.theme-neon .detail-section,
+body.theme-neon .detail-time-card,
+body.theme-neon .detail-item{
+ background:rgba(255,255,255,.94)!important;
+ border-color:#d9cdec!important;
+}
+body.theme-neon .detail-modalhead{border-bottom-color:#d8cde8!important}
+body.theme-neon .detail-modalhead h2,
+body.theme-neon .detail-hero h3,
+body.theme-neon .detail-section h4,
+body.theme-neon .detail-item b,
+body.theme-neon .detail-time-card strong,
+body.theme-neon .detail-money-row b,
+body.theme-neon .detail-money-total strong,
+body.theme-neon .detail-actual-total b{
+ color:#302442!important;font-weight:750!important;
+}
+body.theme-neon .detail-modalhead small,
+body.theme-neon .detail-item small,
+body.theme-neon .detail-time-card small,
+body.theme-neon .detail-time-card em,
+body.theme-neon .detail-duration small,
+body.theme-neon .detail-hero p,
+body.theme-neon .detail-money-row,
+body.theme-neon .detail-actual-total,
+body.theme-neon .detail-money-total,
+body.theme-neon .detail-note,
+body.theme-neon .detail-hero-top{
+ color:#625672!important;opacity:1!important;
+}
+body.theme-neon .detail-hero{
+ background:linear-gradient(130deg,#e9ddff,#f3e5ff 52%,#ffeaf2)!important;
+ border-color:#d9c8f2!important;
+}
+body.theme-neon .detail-hero-top span,
+body.theme-neon .detail-hero-top b{background:#fff!important;color:#514064!important}
+body.theme-neon .detail-hero-top .is-done{background:#dcf6e8!important;color:#176b43!important}
+body.theme-neon .detail-hero-top .is-pending{background:#fff0d2!important;color:#895511!important}
+body.theme-neon .detail-duration strong{color:#6840aa!important}
+body.theme-neon .detail-time-card{background:#f8f5fc!important}
+body.theme-neon .detail-actual-total{background:#eee8f8!important}
+body.theme-neon .detail-money-total{background:linear-gradient(110deg,#eee5ff,#ffeaf2)!important}
+body.theme-neon .detail-note{background:#f7f4fa!important;color:#51465f!important}
+body.theme-neon .detail-modalbox .close{background:#e9defa!important;color:#60418f!important}
+
+/* Statistics: headings, filters, totals, table headers, rows and empty states */
+body.theme-neon #statsPage h2,
+body.theme-neon #statsPage h3,
+body.theme-neon #statsPage .filter-hint,
+body.theme-neon #statsPage label,
+body.theme-neon #statsPage .total,
+body.theme-neon #statsPage .filters,
+body.theme-neon #statsPage .filters select,
+body.theme-neon #statsPage .filters input{
+ color:#302442!important;opacity:1!important;
+}
+body.theme-neon #statsPage .total{
+ background:linear-gradient(110deg,#e9ddff,#fceafa)!important;
+ border:1px solid #d9c9f0!important;font-weight:750!important;
+}
+body.theme-neon #statsPage .tablewrap{
+ background:rgba(255,255,255,.96)!important;border:1px solid #ddd3eb!important;
+}
+body.theme-neon #statsPage table,
+body.theme-neon #statsPage tbody,
+body.theme-neon #statsPage tfoot,
+body.theme-neon #statsPage tr,
+body.theme-neon #statsPage td,
+body.theme-neon #statsPage th,
+body.theme-neon #summaryRows td,
+body.theme-neon #statsRows td,
+body.theme-neon #summaryFoot th{
+ color:#30283c!important;opacity:1!important;
+}
+body.theme-neon #statsPage th{
+ background:#e9e0f5!important;color:#4a3a63!important;font-weight:800!important;
+}
+body.theme-neon #statsPage td{background:rgba(255,255,255,.96)!important;border-color:#e4dceb!important}
+body.theme-neon #statsPage td b{color:#352545!important;font-weight:800!important}
+body.theme-neon #statsPage .empty,
+body.theme-neon #statsPage .muted,
+body.theme-neon #statsPage small{color:#655b70!important;opacity:1!important}
+body.theme-neon #statsPage .filters select option{background:#fff;color:#302442}
+
+/* General text coverage across every tab and modal */
+body.theme-neon .sectionhead h2,
+body.theme-neon .panel h2,body.theme-neon .panel h3,
+body.theme-neon .panel h4,body.theme-neon .panel p,
+body.theme-neon .panel small,body.theme-neon .panel label,
+body.theme-neon .panel span,body.theme-neon .panel b,
+body.theme-neon .panel strong,body.theme-neon .panel em,
+body.theme-neon .hero h1,body.theme-neon .hero p,body.theme-neon .hero small,
+body.theme-neon .stat small,body.theme-neon .stat strong,
+body.theme-neon .top,body.theme-neon .top b,body.theme-neon .top small,
+body.theme-neon .brand,body.theme-neon .brand b,body.theme-neon .brand small,
+body.theme-neon .pref-row,body.theme-neon .pref-row b,body.theme-neon .pref-row small,
+body.theme-neon .template-item,body.theme-neon .template-item b,
+body.theme-neon .template-item small,body.theme-neon .template-item span,
+body.theme-neon #planningPage p,body.theme-neon #planningPage small,
+body.theme-neon #planningPage label,body.theme-neon #planningPage span,
+body.theme-neon #planningPage b,body.theme-neon #planningPage strong,
+body.theme-neon #planningPage h2,body.theme-neon #planningPage h3,
+body.theme-neon #modal p,body.theme-neon #modal label,
+body.theme-neon #modal small,body.theme-neon #modal span,
+body.theme-neon #modal b,body.theme-neon #modal strong,
+body.theme-neon .detail-modalbox *{
+ opacity:1!important;text-shadow:none!important;
+}
+body.theme-neon .panel p,body.theme-neon .panel small,
+body.theme-neon .pref-row small,body.theme-neon .template-item small,
+body.theme-neon .filter-hint,body.theme-neon .muted{
+ color:#625970!important;
+}
+body.theme-neon .panel h2,body.theme-neon .panel h3,
+body.theme-neon .panel b,body.theme-neon .panel strong,
+body.theme-neon .pref-row b,body.theme-neon .template-item b{
+ color:#302442!important;
+}
+body.theme-neon .shift-card-layout .shift-info h3{color:#29223d!important}
+body.theme-neon .shift-card-layout .shift-info p{color:#514963!important}
+body.theme-neon .shift-card-layout .shift-pay-tap{color:#6945a8!important}
+body.theme-neon .btn.light{color:#60418f!important}
+body.theme-neon .btn.danger{color:#a83f61!important}
+body.theme-neon input,body.theme-neon select,body.theme-neon textarea{
+ color:#302442!important;-webkit-text-fill-color:#302442!important;opacity:1!important;
+}
+body.theme-neon input::placeholder,body.theme-neon textarea::placeholder{color:#766c84!important;opacity:1!important}
+body.theme-neon .tabs button{color:#5f5671!important}
+body.theme-neon .tabs button.active{color:#59369a!important}
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
