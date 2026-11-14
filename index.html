@@ -1288,15 +1288,15 @@ body.theme-neon .plan-item b{color:#302943!important}
 .shift-card-layout{position:relative}
 .pay-stamp{
   position:absolute;
-  left:16px;
-  bottom:13px;
-  width:112px;
+  left:12px;
+  bottom:9px;
+  width:142px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:3px;
+  gap:0;
   color:#c62838!important;
-  transform:rotate(-9deg) scale(.92);
+  transform:rotate(-7deg) scale(.96);
   transform-origin:center;
   pointer-events:none;
   animation:payStampIn .48s cubic-bezier(.2,1.5,.45,1) both;
@@ -1306,8 +1306,8 @@ body.theme-neon .plan-item b{color:#302943!important}
 .pay-stamp-art{
   display:grid;
   place-items:center;
-  width:78px;
-  height:67px;
+  width:116px;
+  height:126px;
   color:#c62838;
   background:transparent!important;
   border:0!important;
@@ -1316,16 +1316,16 @@ body.theme-neon .plan-item b{color:#302943!important}
 }
 .pay-stamp-cat{
   display:block;
-  width:76px;
-  height:67px;
+  width:112px;
+  height:124px;
   color:#c62838;
   overflow:visible;
   background:transparent!important;
 }
 .pay-stamp-caption{
   color:#c62838!important;
-  font-size:10px;
-  line-height:1.05;
+  font-size:11px;
+  line-height:1.08;
   font-weight:900;
   letter-spacing:.1px;
   text-align:center;
@@ -1394,17 +1394,24 @@ function setTab(t){tab=t;['home','calendar','planning','stats','settings','templ
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
 function toggleShiftPay(id){let el=$('shiftPay-'+id);if(!el)return;el.classList.toggle('is-pop')}
 function shiftSoftColor(color,white=0.84){let m=String(color||'').trim().match(/^#?([0-9a-f]{6})$/i);if(!m)return '#f1ebfa';let n=parseInt(m[1],16),r=n>>16,g=(n>>8)&255,b=n&255;return '#'+[r,g,b].map(v=>Math.round(v+(255-v)*white).toString(16).padStart(2,'0')).join('')}
-function shiftCard(s,showPayStamp=false){let color=prefs.colors?(templates.find(t=>t.kind==='company'&&t.name===s.company)?.color||'#9b83df'):'#9b83df',soft=shiftSoftColor(color),edge=shiftSoftColor(color,.62);return '<article class="shift shift-card-layout" style="--shift-company-color:'+color+';--shift-soft:'+soft+';--shift-edge:'+edge+'"><div class="shifthead"><div class="shift-info"><h3><i class="dot" style="background:'+color+'"></i>'+esc(s.company)+'</h3><p>'+esc(s.position||'')+' · '+dateVN(s.work_date)+'</p><p>◷ '+timeHM(s.start_time)+' – '+timeHM(s.end_time)+' · '+fmt(dur(s))+'</p>'+(shiftTransferLabel(s)?'<p class="transfer-note">'+esc(shiftTransferLabel(s))+'</p>':'')+'<p>Check-in: '+(s.actual_checkin?timeHM(s.actual_checkin):'Chưa có')+' · Check-out: '+(s.actual_checkout?timeHM(s.actual_checkout):'Chưa có')+'</p></div><div class="shift-status-stack"><span class="pill">'+(s.completed?'✓ Hoàn thành':'○ Chưa hoàn thành')+'</span><small class="shift-pay-label">💰 Lương dự kiến</small><button type="button" class="shift-pay-tap" id="shiftPay-'+s.id+'" onclick="toggleShiftPay(\''+s.id+'\')">'+money(shiftPay(s))+'</button></div></div><div class="shift-actions"><div class="action-row"><button class="btn light small" onclick="checkTime(\''+s.id+'\',\'actual_checkin\')">Check-in</button><button class="btn light small" onclick="checkTime(\''+s.id+'\',\'actual_checkout\')">Check-out</button></div><div class="action-row"><button class="btn small '+(s.completed?'status-done':'status-pending')+'" onclick="setShiftStatus(\''+s.id+'\',true)">✓ Hoàn thành</button><button class="btn small '+(!s.completed?'status-notdone':'status-inactive')+'" onclick="setShiftStatus(\''+s.id+'\',false)">↺ Chưa hoàn thành</button></div><div class="action-row"><button class="btn light small" onclick="openShiftDetails(\''+s.id+'\')">👁 Xem chi tiết</button></div><div class="action-row"><button class="btn light small" onclick="editShift(\''+s.id+'\')">Sửa ca</button><button class="btn danger small" onclick="removeShift(\''+s.id+'\')">Xóa ca</button></div></div>'+(showPayStamp&&s.completed?'<div class="pay-stamp" aria-label="Chúc mừng đã có lương"><span class="pay-stamp-art"><svg class="pay-stamp-cat" viewBox="0 0 100 88" role="img" aria-label="Mèo con nét vẽ đóng dấu" xmlns="http://www.w3.org/2000/svg">
+function shiftCard(s,showPayStamp=false){let color=prefs.colors?(templates.find(t=>t.kind==='company'&&t.name===s.company)?.color||'#9b83df'):'#9b83df',soft=shiftSoftColor(color),edge=shiftSoftColor(color,.62);return '<article class="shift shift-card-layout" style="--shift-company-color:'+color+';--shift-soft:'+soft+';--shift-edge:'+edge+'"><div class="shifthead"><div class="shift-info"><h3><i class="dot" style="background:'+color+'"></i>'+esc(s.company)+'</h3><p>'+esc(s.position||'')+' · '+dateVN(s.work_date)+'</p><p>◷ '+timeHM(s.start_time)+' – '+timeHM(s.end_time)+' · '+fmt(dur(s))+'</p>'+(shiftTransferLabel(s)?'<p class="transfer-note">'+esc(shiftTransferLabel(s))+'</p>':'')+'<p>Check-in: '+(s.actual_checkin?timeHM(s.actual_checkin):'Chưa có')+' · Check-out: '+(s.actual_checkout?timeHM(s.actual_checkout):'Chưa có')+'</p></div><div class="shift-status-stack"><span class="pill">'+(s.completed?'✓ Hoàn thành':'○ Chưa hoàn thành')+'</span><small class="shift-pay-label">💰 Lương dự kiến</small><button type="button" class="shift-pay-tap" id="shiftPay-'+s.id+'" onclick="toggleShiftPay(\''+s.id+'\')">'+money(shiftPay(s))+'</button></div></div><div class="shift-actions"><div class="action-row"><button class="btn light small" onclick="checkTime(\''+s.id+'\',\'actual_checkin\')">Check-in</button><button class="btn light small" onclick="checkTime(\''+s.id+'\',\'actual_checkout\')">Check-out</button></div><div class="action-row"><button class="btn small '+(s.completed?'status-done':'status-pending')+'" onclick="setShiftStatus(\''+s.id+'\',true)">✓ Hoàn thành</button><button class="btn small '+(!s.completed?'status-notdone':'status-inactive')+'" onclick="setShiftStatus(\''+s.id+'\',false)">↺ Chưa hoàn thành</button></div><div class="action-row"><button class="btn light small" onclick="openShiftDetails(\''+s.id+'\')">👁 Xem chi tiết</button></div><div class="action-row"><button class="btn light small" onclick="editShift(\''+s.id+'\')">Sửa ca</button><button class="btn danger small" onclick="removeShift(\''+s.id+'\')">Xóa ca</button></div></div>'+(showPayStamp&&s.completed?'<div class="pay-stamp" aria-label="Chúc mừng đã có lương"><span class="pay-stamp-art"><svg class="pay-stamp-cat" viewBox="0 0 120 138" role="img" aria-label="Huy chương mèo con" xmlns="http://www.w3.org/2000/svg">
 <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M20 38 16 12q-1-6 5-3l20 16q9-3 18 0L79 9q6-3 5 4l-4 26q8 10 5 23-5 19-35 19T15 62q-3-13 5-24Z"/>
-<path d="M25 48q5-7 10 0m30 0q5-7 10 0"/>
-<path d="m45 57 5 4 5-4q-5-5-10 0Z"/>
-<path d="M50 61v5m0 0q-7 8-14 1m14-1q7 8 14 1"/>
-<path d="m25 56-13-3m13 9-13 2m63-12 13-3m-13 13 13 2"/>
-<path d="M33 70q-3 7-10 7m44-7q3 7 10 7"/>
-<path d="M72 15q8-7 13 0-5 8-13 0Z"/>
+<!-- ribbon tails -->
+<path d="M39 88 27 126l18-8 10 14 8-36"/>
+<path d="M81 88 93 126l-18-8-10 14-8-36"/>
+<!-- scalloped medal edge -->
+<path d="M60 5 68 10 78 8 84 17 95 20 97 31 106 39 103 50 109 60 103 70 106 81 96 89 93 100 81 102 74 111 63 108 52 114 43 107 32 109 27 98 16 94 17 82 8 74 13 63 7 53 13 43 10 32 21 25 25 14 37 15 46 7 56 11Z"/>
+<!-- inner seal ring -->
+<path d="M60 17c23 0 42 19 42 42S83 101 60 101 18 82 18 59 37 17 60 17Z"/>
+<!-- cat ears and cheeks -->
+<path d="M31 52 29 32q0-5 5-2l15 12q11-4 22 0l15-12q5-3 5 2l-2 20q6 8 4 18-4 19-28 21H55q-24-2-28-21-2-10 4-18Z"/>
+<!-- eyes, nose, smile -->
+<path d="M42 65q5-7 10 0m16 0q5-7 10 0"/>
+<path d="m55 75 5 4 5-4q-5-5-10 0Z"/>
+<path d="M60 79v5m0 0q-7 8-14 1m14-1q7 8 14 1"/>
+<path d="m38 74-11-2m11 8-11 2m55-12 11-2m-11 12 11 2"/>
 </g>
-<g fill="currentColor"><circle cx="31" cy="55" r="1.8"/><circle cx="69" cy="55" r="1.8"/><circle cx="22" cy="59" r="1.2"/><circle cx="78" cy="59" r="1.2"/></g>
+<g fill="currentColor"><circle cx="45" cy="66" r="1.8"/><circle cx="75" cy="66" r="1.8"/></g>
 </svg></span><span class="pay-stamp-caption">chúc mừng<br>đã có lương</span></div>':'')+'</article>'}
 function openShiftDetails(id){
  const s=shifts.find(x=>String(x.id)===String(id));if(!s)return;
