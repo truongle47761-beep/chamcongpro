@@ -1590,6 +1590,54 @@ body.theme-neon .finance-filter-row input,body.theme-neon .finance-filter-row se
 body.theme-neon .finance-hero{background:linear-gradient(125deg,#203d38,#252348 65%,#40253b);border-color:#52627c;color:#fff}
 body.theme-neon .finance-hero p,body.theme-neon .finance-hero small{color:#d4d9ef}
 body.theme-neon .finance-setup{background:#332b1d;color:#f5dfb2;border-color:#725d37}
+
+
+/* NEON INPUT CONTRAST — brighter readable text on every dark-theme field */
+body.theme-neon input:not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+body.theme-neon select,
+body.theme-neon textarea,
+body.theme-neon .field input,
+body.theme-neon .field select,
+body.theme-neon .field textarea,
+body.theme-neon .filters input,
+body.theme-neon .filters select,
+body.theme-neon .finance-filter-row input,
+body.theme-neon .finance-filter-row select,
+body.theme-neon .stats-filters input,
+body.theme-neon .stats-filters select,
+body.theme-neon .exportbox input,
+body.theme-neon .exportbox select {
+  color: #f4f6ff !important;
+  -webkit-text-fill-color: #f4f6ff !important;
+  background-color: #11162b !important;
+  border-color: rgba(153, 128, 255, .48) !important;
+  caret-color: #54e8ff;
+}
+body.theme-neon input::placeholder,
+body.theme-neon textarea::placeholder {
+  color: #b8c2e8 !important;
+  -webkit-text-fill-color: #b8c2e8 !important;
+  opacity: 1 !important;
+}
+body.theme-neon select option,
+body.theme-neon select optgroup {
+  color: #f4f6ff !important;
+  background: #171b35 !important;
+}
+body.theme-neon input:focus,
+body.theme-neon select:focus,
+body.theme-neon textarea:focus {
+  outline: 2px solid rgba(0, 220, 255, .72) !important;
+  outline-offset: 1px;
+  border-color: #a77aff !important;
+  box-shadow: 0 0 0 3px rgba(0, 220, 255, .12), 0 0 18px rgba(151, 91, 255, .2) !important;
+}
+body.theme-neon .field label,
+body.theme-neon .finance-filter-row label,
+body.theme-neon .filters label {
+  color: #d4dcfa !important;
+}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
