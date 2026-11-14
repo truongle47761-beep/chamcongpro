@@ -60,3 +60,26 @@ begin
  if not exists(select 1 from pg_publication_tables where pubname='supabase_realtime' and schemaname='public' and tablename='finance_templates') then alter publication supabase_realtime add table public.finance_templates; end if;
  if not exists(select 1 from pg_publication_tables where pubname='supabase_realtime' and schemaname='public' and tablename='finance_categories') then alter publication supabase_realtime add table public.finance_categories; end if;
 end $$;
+
+
+-- Vị trí lưu giữ tiền / ví / ngân hàng cho từng khoản thu chi.
+alter table public.finance_transactions add column if not exists payment_method text not null default 'cash' check(payment_method in ('cash','transfer'));
+alter table public.finance_transactions add column if not exists account_name text;
+alter table public.finance_templates add column if not exists payment_method text not null default 'cash' check(payment_method in ('cash','transfer'));
+alter table public.finance_templates add column if not exists account_name text;
+create table if not exists public.finance_accounts (
+ id uuid primary key default gen_random_uuid(),
+ user_id uuid not null references auth.users(id) on delete cascade,
+ name text not null,
+ created_at timestamptz not null default now(),
+ unique(user_id,name)
+);
+create index if not exists finance_accounts_user_name_idx on public.finance_accounts(user_id,name);
+alter table public.finance_accounts enable row level security;
+drop policy if exists "Users manage own finance accounts" on public.finance_accounts;
+create policy "Users manage own finance accounts" on public.finance_accounts for all to authenticated using(auth.uid()=user_id) with check(auth.uid()=user_id);
+grant select,insert,update,delete on public.finance_accounts to authenticated;
+do $$
+begin
+ if not exists(select 1 from pg_publication_tables where pubname='supabase_realtime' and schemaname='public' and tablename='finance_accounts') then alter publication supabase_realtime add table public.finance_accounts; end if;
+end $$;
