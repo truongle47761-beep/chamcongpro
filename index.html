@@ -745,6 +745,35 @@ body.theme-neon .day.sel{
 body.theme-neon .day.all-done{background:#d9f3e7!important;border:1px solid #83d6b1!important;color:#245b49!important;box-shadow:0 0 0 1px rgba(129,220,181,.28),0 0 13px rgba(129,220,181,.22)!important}
 body.theme-neon .day.all-done.sel{background:#c8eedc!important;border:2px solid #65c99b!important;color:#194f3d!important;box-shadow:0 0 0 2px rgba(129,220,181,.22),0 0 16px rgba(129,220,181,.3)!important}
 body.theme-neon .day.all-done:before{background:#e9fff4!important}
+
+
+/* MINI PLANNING CALENDAR: keep shift labels readable over every saved company color */
+#planningPage .plan-cell-shift{
+  background:rgba(255,255,255,.9)!important;
+  color:#302442!important;
+  border:1px solid rgba(75,57,105,.12)!important;
+  border-left:3px solid var(--plan-color)!important;
+}
+#planningPage .plan-cell-shift b{
+  color:#302442!important;
+  font-weight:850!important;
+  text-shadow:none!important;
+}
+#planningPage .plan-cell-shift small{
+  color:#5b526b!important;
+  font-weight:650!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+#planningPage .plan-cell .plan-more{
+  color:#594579!important;
+  font-weight:800!important;
+}
+@media(max-width:420px){
+  #planningPage .plan-cell-shift b{color:#302442!important}
+  #planningPage .plan-cell-shift small{color:#5b526b!important}
+}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
