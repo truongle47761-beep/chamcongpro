@@ -774,6 +774,153 @@ body.theme-neon .day.all-done:before{background:#e9fff4!important}
   #planningPage .plan-cell-shift small{color:#5b526b!important}
 }
 
+
+
+/* FINAL ACCESSIBLE TEXT CONTRAST — keep both themes readable without flattening their visual style */
+/* Neon uses its current light, luminous surfaces: dark primary text and stronger secondary text. */
+body.theme-neon .hero,
+body.theme-neon .stat,
+body.theme-neon .panel,
+body.theme-neon .shift,
+body.theme-neon .authbox,
+body.theme-neon .modalbox,
+body.theme-neon .detail-modalbox,
+body.theme-neon .detail-section,
+body.theme-neon .detail-item,
+body.theme-neon .detail-time-card,
+body.theme-neon .template-item,
+body.theme-neon .pref-row{
+  color:#302442!important;
+}
+body.theme-neon .hero h1,
+body.theme-neon .hero h2,
+body.theme-neon .hero h3,
+body.theme-neon .stat strong,
+body.theme-neon .sectionhead h2,
+body.theme-neon .panel h2,
+body.theme-neon .panel h3,
+body.theme-neon .panel h4,
+body.theme-neon .shift h3,
+body.theme-neon .detail-modalbox h2,
+body.theme-neon .detail-modalbox h3,
+body.theme-neon .detail-modalbox h4,
+body.theme-neon .detail-item b,
+body.theme-neon .detail-time-card strong,
+body.theme-neon .detail-money-row b,
+body.theme-neon .template-item b,
+body.theme-neon .pref-row b{
+  color:#302442!important;
+  opacity:1!important;
+  font-weight:750!important;
+}
+body.theme-neon .hero p,
+body.theme-neon .hero small,
+body.theme-neon .stat small,
+body.theme-neon .panel p,
+body.theme-neon .panel small,
+body.theme-neon .panel label,
+body.theme-neon .panel .muted,
+body.theme-neon .panel .hint,
+body.theme-neon .shift p,
+body.theme-neon .shift small,
+body.theme-neon .field label,
+body.theme-neon .filters label,
+body.theme-neon .filter-hint,
+body.theme-neon .template-item small,
+body.theme-neon .pref-row small,
+body.theme-neon .detail-modalbox p,
+body.theme-neon .detail-modalbox small,
+body.theme-neon .detail-modalbox label,
+body.theme-neon .detail-modalbox em,
+body.theme-neon .detail-modalhead small,
+body.theme-neon .detail-item small,
+body.theme-neon .detail-time-card small,
+body.theme-neon .detail-time-card em,
+body.theme-neon .detail-money-row,
+body.theme-neon .detail-duration small,
+body.theme-neon .detail-note{
+  color:#62566f!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+body.theme-neon #statsPage .tablewrap,
+body.theme-neon #statsPage .tablewrap table,
+body.theme-neon #statsPage .tablewrap tbody,
+body.theme-neon #statsPage .tablewrap tfoot,
+body.theme-neon #statsPage .tablewrap tr,
+body.theme-neon #statsPage .tablewrap td{
+  color:#302442!important;
+}
+body.theme-neon #statsPage .tablewrap th{
+  color:#49365f!important;
+  font-weight:800!important;
+}
+body.theme-neon #statsPage .tablewrap td,
+body.theme-neon #statsPage .tablewrap td span,
+body.theme-neon #statsPage .tablewrap td small{
+  color:#51465f!important;
+  opacity:1!important;
+}
+body.theme-neon .tabs button{color:#62566f!important}
+body.theme-neon .tabs button.active{color:#6039a2!important}
+body.theme-neon .btn:not(.light):not(.danger),
+body.theme-neon .btn:not(.light):not(.danger) *{color:#fff!important}
+body.theme-neon .btn.light,
+body.theme-neon .pill{color:#60418f!important}
+body.theme-neon .btn.danger{color:#a83f61!important}
+body.theme-neon .status-done,
+body.theme-neon .status-pending,
+body.theme-neon .status-notdone{color:#fff!important}
+body.theme-neon input,
+body.theme-neon select,
+body.theme-neon textarea{
+  color:#302442!important;
+  -webkit-text-fill-color:#302442!important;
+}
+body.theme-neon input::placeholder,
+body.theme-neon textarea::placeholder{color:#766c84!important;opacity:1!important}
+
+/* Glass: strengthen secondary text on translucent white surfaces too. */
+body.theme-glass .hero p,
+body.theme-glass .hero small,
+body.theme-glass .stat small,
+body.theme-glass .panel p,
+body.theme-glass .panel small,
+body.theme-glass .panel label,
+body.theme-glass .panel .muted,
+body.theme-glass .shift p,
+body.theme-glass .shift small,
+body.theme-glass .field label,
+body.theme-glass .filters label,
+body.theme-glass .filter-hint,
+body.theme-glass .detail-modalbox p,
+body.theme-glass .detail-modalbox small,
+body.theme-glass .detail-modalbox label,
+body.theme-glass .detail-item small,
+body.theme-glass .detail-time-card small,
+body.theme-glass .detail-time-card em,
+body.theme-glass .detail-money-row,
+body.theme-glass .template-item small,
+body.theme-glass .pref-row small{
+  color:#62566f!important;
+  opacity:1!important;
+}
+body.theme-glass .hero h1,
+body.theme-glass .stat strong,
+body.theme-glass .sectionhead h2,
+body.theme-glass .panel h2,
+body.theme-glass .panel h3,
+body.theme-glass .panel h4,
+body.theme-glass .shift h3,
+body.theme-glass .detail-modalbox h2,
+body.theme-glass .detail-modalbox h3,
+body.theme-glass .detail-modalbox h4,
+body.theme-glass .detail-item b,
+body.theme-glass .detail-time-card strong{
+  color:#302442!important;
+  opacity:1!important;
+}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
