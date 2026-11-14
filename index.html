@@ -1348,10 +1348,27 @@ body.theme-neon .shift-card-layout{
  color:#302943!important;
  box-shadow:0 8px 24px rgba(75,55,110,.13),0 0 18px color-mix(in srgb,var(--shift-company-color) 18%,transparent)!important;
 }
-body.theme-neon .shift-card-layout .shift-info h3{color:#302943!important}
-body.theme-neon .shift-card-layout .shift-info p{color:#625b76!important}
-body.theme-neon .shift-card-layout .shift-pay-label{color:#716b86!important}
-body.theme-neon .shift-card-layout .pill{color:#6546a6!important}
+/* Keep every information label inside Neon shift cards dark and readable. */
+body.theme-neon .shift-card-layout,
+body.theme-neon .shift-card-layout .shift-info,
+body.theme-neon .shift-card-layout .shift-info h3,
+body.theme-neon .shift-card-layout .shift-info p,
+body.theme-neon .shift-card-layout .shift-info small,
+body.theme-neon .shift-card-layout .shift-status-stack,
+body.theme-neon .shift-card-layout .shift-status-stack small,
+body.theme-neon .shift-card-layout .shift-pay-label,
+body.theme-neon .shift-card-layout .pill,
+body.theme-neon .shift-card-layout .transfer-note,
+body.theme-neon .shift-card-layout .shift-pay-tap{
+ color:#172b4d!important;
+}
+body.theme-neon .shift-card-layout .shift-info .dot{
+ color:inherit!important;
+}
+/* Preserve the existing button fills and their white/colored button labels. */
+body.theme-neon .shift-card-layout .shift-actions button{
+ color:inherit;
+}
 
 /* Colorful glossy 3D kitten medal for completed shifts in Calendar. */
 .pay-stamp{width:154px;left:8px;bottom:7px;transform:rotate(-4deg) scale(.98);filter:drop-shadow(0 5px 5px rgba(80,35,25,.22))}
