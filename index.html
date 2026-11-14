@@ -1177,6 +1177,68 @@ body.theme-neon :is(.status-done,.status-pending,.status-notdone,.status-inactiv
   opacity:revert!important;
 }
 
+
+/* NEON RESET — dark surfaces + high-contrast text. Glass theme is untouched. */
+html:has(body.theme-neon), body.theme-neon{
+  background:#090b16!important;
+  background-image:radial-gradient(ellipse at 12% 0%,rgba(119,48,255,.20),transparent 38%),radial-gradient(ellipse at 88% 28%,rgba(0,190,220,.12),transparent 36%),linear-gradient(145deg,#090b16,#0d1224)!important;
+  color:#f5f6ff!important;
+}
+body.theme-neon .wrap{background:transparent!important;color:#f5f6ff!important}
+body.theme-neon .hero,
+body.theme-neon .stat,
+body.theme-neon .panel,
+body.theme-neon .shift,
+body.theme-neon .authbox,
+body.theme-neon .modalbox,
+body.theme-neon .detail-modalbox{
+  background:#171c35!important;
+  background-image:none!important;
+  border:1px solid #41466f!important;
+  color:#f5f6ff!important;
+  box-shadow:0 8px 26px rgba(0,0,0,.38),0 0 16px rgba(128,83,255,.10)!important;
+}
+body.theme-neon .hero{
+  background:linear-gradient(125deg,#29204b,#172443 62%,#123044)!important;
+  border-color:#65519a!important;
+}
+body.theme-neon .shift{
+  background:#171f38!important;
+  border-color:#465078!important;
+}
+body.theme-neon .tabs{
+  background:#10162b!important;
+  border:1px solid #41466f!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.48)!important;
+}
+body.theme-neon .pill{
+  background:#282044!important;
+  color:#e6d8ff!important;
+  border:1px solid #66528e!important;
+}
+body.theme-neon :is(.brand b,.hero h1,.stat strong,.sectionhead h2,.panel h2,.panel h3,.panel h4,.shift h3,.detail-modalbox h2,.detail-modalbox h3,.detail-modalbox h4,.modalbox h2,.modalbox h3){
+  color:#ffffff!important;opacity:1!important
+}
+body.theme-neon :is(.brand small,.hero p,.hero small,.stat small,.panel p,.panel small,.shift p,.shift small,.field label,.filters label,.muted,.detail-modalbox p,.detail-modalbox small,.detail-item small,.detail-time-card small,.notice,.empty,.hint,.subtext){
+  color:#cbd4ef!important;opacity:1!important
+}
+body.theme-neon .shift :is(.status-done,.status-pending,.status-notdone,.status-inactive,.day-preview-status),
+body.theme-neon :is(.status-done,.status-pending,.status-notdone,.status-inactive,.day-preview-status){
+  /* status badge fills and text are preserved */
+  opacity:1!important;
+}
+body.theme-neon .tabs button{color:#cbd4ef!important;opacity:1!important}
+body.theme-neon .tabs button.active{color:#ffffff!important;background:#35265c!important}
+body.theme-neon .field input,
+body.theme-neon .field select,
+body.theme-neon .field textarea,
+body.theme-neon .filters input,
+body.theme-neon .filters select{
+  background:#0e1428!important;color:#ffffff!important;border-color:#41466f!important;
+}
+body.theme-neon input::placeholder,
+body.theme-neon textarea::placeholder{color:#aebbdc!important;opacity:1!important}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
