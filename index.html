@@ -1376,6 +1376,94 @@ body.theme-neon .shift-card-layout .shift-actions button{
 .pay-stamp-cat{width:148px;height:168px;display:block;background:transparent!important}
 @media(max-width:390px){.pay-stamp{width:132px;left:5px}.pay-stamp-art{width:128px;height:146px}.pay-stamp-cat{width:126px;height:144px}}
 
+
+/* ACCESSIBILITY PATCH — preserve saved job colors, make all card content readable */
+body.theme-neon .shift-card-layout,
+body.theme-neon .shift-card-layout .shift-info,
+body.theme-neon .shift-card-layout .shift-info h3,
+body.theme-neon .shift-card-layout .shift-info p,
+body.theme-neon .shift-card-layout .shift-info span,
+body.theme-neon .shift-card-layout .shift-info small,
+body.theme-neon .shift-card-layout .shift-info strong,
+body.theme-neon .shift-card-layout .shift-status-stack,
+body.theme-neon .shift-card-layout .shift-status-stack span,
+body.theme-neon .shift-card-layout .shift-status-stack small,
+body.theme-neon .shift-card-layout .shift-pay-label,
+body.theme-neon .shift-card-layout .shift-pay-tap,
+body.theme-neon .shift-card-layout .pill,
+body.theme-neon .shift-card-layout .transfer-note {
+  color:#172b4d!important;text-shadow:none!important;
+}
+body.theme-neon .shift-card-layout .pill {
+  background:rgba(255,255,255,.78)!important;border-color:rgba(23,43,77,.22)!important;
+}
+body.theme-neon .shift-card-layout .shift-actions button,
+body.theme-neon .shift-card-layout button {text-shadow:none!important}
+
+/* Planned calendar: bright text on dark controls; dark text on light date/shift tiles. */
+body.theme-neon #planningPage .plan-toolbar,
+body.theme-neon #planningPage .plan-toolbar b,
+body.theme-neon #planningPage #planMonthTitle,
+body.theme-neon #planningPage .panel>p,
+body.theme-neon #planningPage .plan-weekday,
+body.theme-neon #planningPage .plan-count,
+body.theme-neon #planningPage .plan-more,
+body.theme-neon #planningPage .plan-hint,
+body.theme-neon #planningPage label {color:#f1efff!important}
+body.theme-neon #planningPage input,
+body.theme-neon #planningPage select,
+body.theme-neon #planningPage textarea {
+ color:#f5f2ff!important;background:#11182d!important;border-color:#555078!important;
+}
+body.theme-neon #planningPage input::placeholder,
+body.theme-neon #planningPage textarea::placeholder {color:#b9c2df!important;opacity:1}
+body.theme-neon #planningPage select option {background:#11182d!important;color:#f5f2ff!important}
+body.theme-neon #planningPage .plan-cell,
+body.theme-neon #planningPage .plan-day {color:#172b4d!important}
+body.theme-neon #planningPage .plan-cell .plan-date,
+body.theme-neon #planningPage .plan-day h3,
+body.theme-neon #planningPage .plan-day small {color:#263653!important}
+body.theme-neon #planningPage .plan-cell-shift,
+body.theme-neon #planningPage .plan-cell-shift b,
+body.theme-neon #planningPage .plan-cell-shift small,
+body.theme-neon #planningPage .plan-item,
+body.theme-neon #planningPage .plan-item b,
+body.theme-neon #planningPage .plan-item small {
+ color:#172b4d!important;text-shadow:none!important;
+}
+body.theme-neon #planningPage .plan-cell-shift {
+ background:color-mix(in srgb,var(--plan-color) 24%,white)!important;
+ border-left-color:var(--plan-color)!important;
+}
+
+/* Shift detail popup: dark ink on pastel information cards. */
+body.theme-neon .detail-modalbox .detail-hero,
+body.theme-neon .detail-modalbox .detail-time-card,
+body.theme-neon .detail-modalbox .detail-section,
+body.theme-neon .detail-modalbox .detail-money-card,
+body.theme-neon .detail-modalbox .detail-money-row,
+body.theme-neon .detail-modalbox .detail-actual-total,
+body.theme-neon .detail-modalbox .detail-money-total {color:#172b4d!important}
+body.theme-neon .detail-modalbox .detail-hero h2,
+body.theme-neon .detail-modalbox .detail-hero p,
+body.theme-neon .detail-modalbox .detail-hero span,
+body.theme-neon .detail-modalbox .detail-section h4,
+body.theme-neon .detail-modalbox .detail-time-card,
+body.theme-neon .detail-modalbox .detail-time-card *,
+body.theme-neon .detail-modalbox .detail-money-row,
+body.theme-neon .detail-modalbox .detail-money-row *,
+body.theme-neon .detail-modalbox .detail-actual-total *,
+body.theme-neon .detail-modalbox .detail-money-total * {
+ color:#172b4d!important;text-shadow:none!important;
+}
+body.theme-neon .detail-modalbox .detail-time-card,
+body.theme-neon .detail-modalbox .detail-section {
+ background:#f7f4ff!important;border-color:#d8cbed!important;
+}
+body.theme-neon .detail-modalbox .detail-hero {
+ background:linear-gradient(125deg,#e8dcff,#fbe5f2)!important;
+}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
