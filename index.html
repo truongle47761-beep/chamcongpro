@@ -420,6 +420,107 @@ body.theme-glass #planningPage #planDays .plan-item .btn{box-shadow:none}
 body.theme-glass .shift-card-layout{background:var(--shift-soft)!important;border:1px solid var(--shift-edge)!important;border-left:4px solid var(--shift-company-color)!important;color:#302943!important}
 body.theme-glass .shift-card-layout .shift-info h3{color:#302943!important}
 body.theme-glass .shift-card-layout .shift-info p{color:#625b76!important}
+
+/* NEON SOFT GLASS REFRESH — luminous lavender, pastel company cards and glowing controls */
+body.theme-neon{
+ --ink:#302943;--muted:#716b86;--purple:#8054d6;--pale:rgba(153,112,235,.16);--line:rgba(151,121,220,.24);
+ color:#302943!important;
+ background:
+  radial-gradient(ellipse at 8% 4%,rgba(255,190,245,.48),transparent 34%),
+  radial-gradient(ellipse at 92% 12%,rgba(153,190,255,.48),transparent 36%),
+  radial-gradient(ellipse at 50% 95%,rgba(211,180,255,.5),transparent 42%),
+  linear-gradient(145deg,#f8efff 0%,#e9edff 48%,#f5eaff 100%)!important;
+ background-attachment:fixed!important;
+}
+body.theme-neon .hero,body.theme-neon .stat,body.theme-neon .panel,
+body.theme-neon .authbox,body.theme-neon .modalbox,body.theme-neon .detail-modalbox{
+ background:rgba(255,255,255,.72)!important;
+ border:1px solid rgba(255,255,255,.94)!important;
+ color:#302943!important;
+ box-shadow:0 10px 32px rgba(119,91,177,.12),0 0 22px rgba(174,137,255,.13)!important;
+ -webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);
+}
+body.theme-neon .hero{background:linear-gradient(125deg,rgba(255,255,255,.82),rgba(229,216,255,.72),rgba(211,237,255,.72))!important}
+body.theme-neon .hero h1,body.theme-neon .hero p,body.theme-neon .hero small,
+body.theme-neon .sectionhead h2,body.theme-neon .panel h2,body.theme-neon .panel h3,
+body.theme-neon .shift h3,body.theme-neon .detail-item b,body.theme-neon .modalhead h2,
+body.theme-neon .stat strong{color:#302943!important}
+body.theme-neon .field label,body.theme-neon .muted,body.theme-neon .shift p,
+body.theme-neon .stat small,body.theme-neon .panel>p{color:#716b86!important}
+body.theme-neon .tabs{
+ background:rgba(255,255,255,.78)!important;border:1px solid rgba(255,255,255,.96)!important;
+ box-shadow:0 8px 30px rgba(123,89,190,.18),0 0 22px rgba(179,136,255,.2)!important;
+ -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)
+}
+body.theme-neon .tabs button{color:#6f6884!important}
+body.theme-neon .tabs button.active{
+ background:linear-gradient(135deg,rgba(211,188,255,.8),rgba(238,218,255,.88))!important;
+ color:#7042c2!important;box-shadow:0 0 0 1px rgba(255,255,255,.95),0 0 18px rgba(164,112,255,.42)!important;
+}
+body.theme-neon .btn,body.theme-neon button.btn,body.theme-neon .theme-switch button{
+ border:1px solid rgba(255,255,255,.92)!important;
+ box-shadow:0 0 0 1px rgba(170,132,255,.18),0 0 13px rgba(165,111,255,.28),0 5px 16px rgba(119,83,190,.13)!important;
+ transition:box-shadow .18s ease,transform .18s ease;
+}
+body.theme-neon .btn:not(.light):not(.danger){
+ background:linear-gradient(115deg,#a875ed,#8061e8 58%,#56c9e8)!important;color:#fff!important;
+ border-color:rgba(255,255,255,.9)!important;
+ box-shadow:0 0 0 1px rgba(255,255,255,.72),0 0 17px rgba(158,111,255,.58),0 0 26px rgba(76,204,235,.2)!important;
+}
+body.theme-neon .btn.light,body.theme-neon .pill,body.theme-neon .shift-pay-tap{
+ background:rgba(238,229,255,.78)!important;color:#7652b5!important;
+ border:1px solid rgba(255,255,255,.98)!important;
+ box-shadow:0 0 0 1px rgba(166,126,235,.14),0 0 14px rgba(165,118,255,.25)!important;
+}
+body.theme-neon .btn.danger{background:rgba(255,226,235,.86)!important;color:#bd5577!important;border-color:#fff!important;box-shadow:0 0 14px rgba(255,142,183,.3)!important}
+body.theme-neon .field input,body.theme-neon .field select,body.theme-neon .field textarea,
+body.theme-neon .filters input,body.theme-neon .filters select,
+body.theme-neon .plan-toolbar input,body.theme-neon .plan-toolbar select{
+ background:rgba(255,255,255,.86)!important;border:1px solid rgba(183,162,222,.5)!important;
+ color:#302943!important;box-shadow:inset 0 1px 3px rgba(109,83,151,.05)!important;color-scheme:light!important;
+}
+body.theme-neon .field input::placeholder,body.theme-neon .field textarea::placeholder{color:#9189a4!important}
+body.theme-neon .close{background:rgba(226,214,255,.88)!important;color:#7652b5!important;box-shadow:0 0 14px rgba(166,120,255,.3)!important}
+body.theme-neon .tablewrap{background:rgba(255,255,255,.75)!important;border-color:rgba(255,255,255,.95)!important}
+body.theme-neon table{color:#302943!important}
+body.theme-neon th{background:rgba(224,211,255,.88)!important;color:#59447e!important}
+body.theme-neon td{border-color:rgba(173,157,207,.25)!important}
+body.theme-neon .day{background:rgba(255,255,255,.78)!important;color:#403653!important;border-color:rgba(255,255,255,.98)!important;box-shadow:0 3px 10px rgba(119,91,177,.08)!important}
+body.theme-neon .day.sel{background:linear-gradient(135deg,#d8c4ff,#e9d9ff)!important;border-color:#fff!important;color:#56358e!important;box-shadow:0 0 0 1px #b996f4,0 0 17px rgba(161,111,255,.48)!important}
+body.theme-neon .shift-card-layout{
+ background:var(--shift-soft)!important;border:1px solid var(--shift-edge)!important;
+ border-left:4px solid var(--shift-company-color)!important;color:#302943!important;
+ box-shadow:0 8px 26px rgba(111,91,157,.12),0 0 20px rgba(160,124,230,.16)!important;
+}
+body.theme-neon .shift-card-layout .shift-info h3{color:#302943!important}
+body.theme-neon .shift-card-layout .shift-info p{color:#625b76!important}
+body.theme-neon .shift-card-layout .pill{background:rgba(238,229,255,.82)!important;color:#7652b5!important}
+body.theme-neon .shift-card-layout .status-done{
+ background:linear-gradient(115deg,#58c9a8,#389c83)!important;color:#fff!important;
+ box-shadow:0 0 0 1px rgba(255,255,255,.95),0 0 18px rgba(61,198,158,.48)!important;
+}
+body.theme-neon #planningPage .plan-toolbar,body.theme-neon #planningPage .plan-toolbar b,
+body.theme-neon #planningPage .panel>p,body.theme-neon #planningPage #planMonthTitle,
+body.theme-neon #planningPage .plan-weekday,body.theme-neon #planningPage .plan-day,
+body.theme-neon #planningPage .plan-day h3,body.theme-neon #planningPage .plan-day small,
+body.theme-neon #planningPage .plan-item,body.theme-neon #planningPage .plan-item b,
+body.theme-neon #planningPage .plan-count,body.theme-neon #planningPage .plan-more{color:#403653!important}
+body.theme-neon #planningPage .plan-cell,body.theme-neon #planningPage .plan-day{
+ background:rgba(255,255,255,.72)!important;border-color:rgba(255,255,255,.95)!important;color:#403653!important;
+ box-shadow:0 4px 14px rgba(111,91,157,.07)!important;
+}
+body.theme-neon #planningPage .plan-cell.muted-day{background:rgba(245,241,251,.72)!important;color:#aaa2b7!important}
+body.theme-neon #planningPage .plan-cell.selected{background:rgba(218,199,255,.85)!important;border-color:#a98be4!important;color:#50357e!important;box-shadow:0 0 16px rgba(161,111,255,.35)!important}
+body.theme-neon #planningPage .plan-item{background:rgba(255,255,255,.76)!important;border:1px solid rgba(255,255,255,.96)!important}
+body.theme-neon #planningPage .plan-toolbar select option{background:#fff;color:#302943}
+body.theme-neon #planningPage .plan-toolbar input::-webkit-calendar-picker-indicator{filter:none}
+body.theme-neon #planningPage .warn{background:#fff0f3!important;color:#a83f61!important}
+body.theme-neon #planningPage .ok-note{background:#e8fff5!important;color:#26765e!important}
+body.theme-neon #modal .modalhead,body.theme-neon #modal #shiftForm .row{background:rgba(255,255,255,.94)!important;color:#302943!important}
+body.theme-neon #modal .modalhead h2,body.theme-neon #modal #shiftForm .field label{color:#594a75!important}
+body.theme-neon #modal #shiftForm input,body.theme-neon #modal #shiftForm select,body.theme-neon #modal #shiftForm textarea{background:#fff!important;color:#302943!important;border-color:#ded3f1!important}
+body.theme-neon #modal #shiftForm input::placeholder,body.theme-neon #modal #shiftForm textarea::placeholder{color:#9189a4!important}
+@media(hover:hover){body.theme-neon .btn:hover,body.theme-neon button.btn:hover{transform:translateY(-1px);filter:brightness(1.035);box-shadow:0 0 0 1px #fff,0 0 22px rgba(160,112,255,.55),0 7px 18px rgba(119,83,190,.18)!important}}
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
