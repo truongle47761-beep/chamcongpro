@@ -922,16 +922,14 @@ body.theme-glass .detail-time-card strong{
 }
 
 
-/* Main calendar day mini-popover: make company and shift-time text readable.
-   Keep HT/CHT badge font, fill, text color, and border exactly as designed. */
+/* Main calendar day mini-popover: brighter company/time text.
+   HT/CHT badges intentionally retain their existing colors, font, and borders. */
 .day-popover span:not(.pop-empty){
-  color:#fff!important;
+  color:#d9f4ff!important;
   opacity:1!important;
-  text-shadow:0 1px 2px rgba(0,0,0,.28)!important;
+  text-shadow:0 1px 2px rgba(0,0,0,.38)!important;
 }
-.day-popover .day-preview-status,
-.day-popover .day-preview-status.done,
-.day-popover .day-preview-status.pending{
+.day-popover .day-preview-status{
   font-family:inherit!important;
   font-size:9px!important;
   font-weight:1000!important;
