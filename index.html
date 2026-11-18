@@ -1710,6 +1710,49 @@ body.theme-neon #modal #shiftForm input:-webkit-autofill{
 .day-note-card .btn{flex-shrink:0}.day-note-editor{display:block;background:#eef5ff}.day-note-editor textarea{display:block;width:100%;box-sizing:border-box;min-height:58px;margin:7px 0;padding:9px 10px;border:1px solid #c6d8ef;border-radius:10px;background:#fff;color:#26364b;font:inherit;font-size:12px;resize:vertical}.day-note-actions{display:flex;gap:7px;justify-content:flex-end}.day-note-actions .btn{font-size:11px;padding:7px 11px}
 .day-mini-schedule{padding:9px 10px;border:1px solid #e6dff2;border-radius:14px;background:#fbf9ff;margin:7px 0 2px}.day-mini-schedule>.shift:first-child{margin-top:0}.plan-day .day-mini-schedule{background:#f8faff;border-color:#dce6f4}.plan-day .day-note-card,.plan-day .day-note-editor{background:#edf5ff}
 body.theme-neon .day-note-card,body.theme-neon .day-note-editor{background:#242a4b;border-color:#58618d;color:#e8eaff}body.theme-neon .day-note-content b,body.theme-neon .day-note-editor label{color:#b9caff}body.theme-neon .day-note-content p{color:#e5e9ff}body.theme-neon .day-note-editor textarea{background:#171b35;color:#f4f2ff;border-color:#505987}body.theme-neon .day-mini-schedule{background:#20213d;border-color:#4a4771}body.theme-neon .shift-pay-formula{color:#b9b2d7}
+
+/* Neon theme fixes: readable auth autofill + dark sticky shift modal chrome */
+body.theme-neon #auth .field input,
+body.theme-neon #auth .field input:focus,
+body.theme-neon #auth .field input:-webkit-autofill,
+body.theme-neon #auth .field input:-webkit-autofill:hover,
+body.theme-neon #auth .field input:-webkit-autofill:focus,
+body.theme-neon #auth .field input:-webkit-autofill:active{
+  background-color:#11162b!important;
+  background-image:none!important;
+  color:#f1f2ff!important;
+  -webkit-text-fill-color:#f1f2ff!important;
+  caret-color:#f1f2ff!important;
+  border-color:#62528f!important;
+  box-shadow:inset 0 0 0 1000px #11162b!important;
+}
+body.theme-neon #auth .field input::placeholder{
+  color:#a0a6c7!important;
+  -webkit-text-fill-color:#a0a6c7!important;
+  opacity:1;
+}
+body.theme-neon #modal .modalhead{
+  background:rgba(20,24,47,.98)!important;
+  color:#f1f2ff!important;
+  border-bottom:1px solid rgba(145,113,255,.22);
+  box-shadow:0 8px 16px rgba(8,10,24,.18);
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+body.theme-neon #modal .modalhead h2{
+  color:#f1f2ff!important;
+}
+body.theme-neon #modal #shiftForm .row{
+  background:rgba(20,24,47,.98)!important;
+  border-top:1px solid rgba(145,113,255,.22);
+  box-shadow:0 -8px 18px rgba(5,7,18,.3)!important;
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+body.theme-neon #modal #shiftForm .row .btn{
+  color:#fff;
+}
+
 </style></head>
 <body>
 <noscript><div style="max-width:520px;margin:10vh auto;padding:24px;background:#fff;border:1px solid #eee;border-radius:18px;font:15px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;color:#28243a;line-height:1.6"><h2>CHẤM CÔNG PRO</h2><p>Trình duyệt đang tắt JavaScript. Hãy bật JavaScript cho trang này rồi tải lại.</p></div></noscript>
