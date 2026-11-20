@@ -1965,12 +1965,13 @@ function copyPlanning(){
  let a=iso(aDate),b=iso(bDate),type=$('planExportType').value,value=$('planExportValue').value;
  let rows=plans.filter(x=>x.work_date>=a&&x.work_date<=b&&(!value||x[type]===value)).sort((x,y)=>x.work_date.localeCompare(y.work_date)||x.start_time.localeCompare(y.start_time)||String(x.company||'').localeCompare(String(y.company||''),'vi'));
  if(!rows.length)return notify('Không có ca dự kiến phù hợp trong khoảng đã chọn.');
- let fmtDate=d=>{let z=new Date(d+'T00:00:00');return z.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'})};
+ let shortDate=d=>{let p=String(d||'').split('-');return p.length===3?p[2]+'/'+p[1]:d};
  let weekday=d=>['CN','T2','T3','T4','T5','T6','T7'][new Date(d+'T00:00:00').getDay()];
- let out;
- if(type==='company'&&value)out=value+'\\n'+rows.map(x=>weekday(x.work_date)+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)).join('\\n');
- else if(type==='position'&&value)out=value+'\\n'+rows.map(x=>weekday(x.work_date)+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)+' · '+x.company).join('\\n');
- else out=rows.map(x=>x.company+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)).join('\\n');
+ let shortTime=t=>{let p=String(t||'').slice(0,5).split(':');return p.length===2?(String(Number(p[0]))+':'+p[1]):t};
+ let groups={};
+ rows.forEach(x=>{let name=x.company||'Chưa phân công';if(!groups[name])groups[name]=[];groups[name].push(x)});
+ let blocks=Object.entries(groups).map(([name,list])=>name+'\n'+list.map(x=>weekday(x.work_date)+' '+shortDate(x.work_date)+' '+shortTime(x.start_time)+'-'+shortTime(x.end_time)).join('\n'));
+ let out=shortDate(a)+'-'+shortDate(b)+'\n'+blocks.join('\n\n');
  const fallbackCopy=()=>{
   let area=document.createElement('textarea');area.value=out;area.setAttribute('readonly','');area.style.position='fixed';area.style.left='-9999px';area.style.top='0';document.body.appendChild(area);area.focus();area.select();area.setSelectionRange(0,area.value.length);
   let copied=false;try{copied=document.execCommand('copy')}catch(e){}
