@@ -1955,11 +1955,33 @@ function openPlanForm(x){$('planEditId').value=x?.id||'';$('planModalTitle').tex
 function closePlanModal(){hide('planModal')}
 $('planForm').onsubmit=async e=>{e.preventDefault();let id=$('planEditId').value,d=$('planDate').value,st=$('planStart').value,en=$('planEnd').value,c=$('planCompany').value.trim();if(!c)return notify('Bạn hãy chọn công việc đã lưu nhé.');if(mins(en)<=mins(st))return notify('Giờ kết thúc phải sau giờ bắt đầu.');let payload={user_id:user.id,work_date:d,company:c,start_time:st,end_time:en};let action=id?sb.from('planned_shifts').update(payload).eq('id',id):sb.from('planned_shifts').insert(payload);let r=await action;if(r.error)return notify(r.error.message);closePlanModal();$('planAnchor').value=d;await loadAll();notify(id?'Đã cập nhật ca dự kiến.':'Đã thêm ca dự kiến.')};
 function editPlan(id){openPlanForm(plans.find(x=>x.id===id))}async function deletePlan(id){if(!confirm('Xóa ca dự kiến này?'))return;let r=await sb.from('planned_shifts').delete().eq('id',id);if(r.error)return notify(r.error.message);await loadAll()}
-function openPlanExport(){$('planExportDate').value=$('planAnchor').value||iso(new Date());$('planExportPeriod').value='week';$('planExportType').value='all';updatePlanExportFields();show('planExportModal')}
+function openPlanExport(){$('planExportPeriod').value='week';$('planExportType').value='all';updatePlanExportFields();show('planExportModal')}
 function updatePlanExportFields(){let type=$('planExportType').value,field='company',values=[...new Set(plans.map(x=>x[field]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'vi'));$('planExportValueWrap').classList.toggle('hidden',type==='all');$('planExportValue').innerHTML='<option value="">Tất cả</option>'+values.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('')}
-function copyPlanning(){let anchor=new Date(($('planAnchor').value||iso(new Date()))+'T00:00:00'),period=$('planExportPeriod').value;let aDate,bDate;if(period==='week'){let offset=(anchor.getDay()+6)%7;aDate=new Date(anchor);aDate.setDate(anchor.getDate()-offset);bDate=new Date(aDate);bDate.setDate(aDate.getDate()+6)}else{aDate=new Date(anchor.getFullYear(),anchor.getMonth(),1);bDate=new Date(anchor.getFullYear(),anchor.getMonth()+1,0)}let a=iso(aDate),b=iso(bDate),type=$('planExportType').value,value=$('planExportValue').value;let rows=plans.filter(x=>x.work_date>=a&&x.work_date<=b&&(!value||x[type]===value)).sort((x,y)=>x.work_date.localeCompare(y.work_date)||x.start_time.localeCompare(y.start_time)||x.company.localeCompare(y.company,'vi'));if(!rows.length)return notify('Không có ca dự kiến phù hợp trong khoảng đã chọn.');let fmtDate=d=>{let z=new Date(d+'T00:00:00');return z.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'})};let weekday=d=>['CN','T2','T3','T4','T5','T6','T7'][new Date(d+'T00:00:00').getDay()];let out;if(type==='company'&&value){out=value+'\n'+rows.map(x=>weekday(x.work_date)+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)).join('\n')}else if(type==='position'&&value){out=value+'\n'+rows.map(x=>weekday(x.work_date)+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)+' · '+x.company).join('\n')}else{out=rows.map(x=>x.company+(false?' · '+x.position:'')+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)).join('\n')}if(navigator.clipboard?.writeText)navigator.clipboard.writeText(out).then(()=>{hide('planExportModal');notify('Đã sao chép lịch dự kiến theo đúng định dạng.')}).catch(()=>prompt('Sao chép nội dung:',out));else prompt('Sao chép nội dung:',out)}
-
-/* FINANCE MODULE — independent Supabase tables and UI state */
+function copyPlanning(){let anchor=new Date(($('planAnchor').valufunction copyPlanning(){
+ let anchor=new Date(($('planAnchor').value||iso(new Date()))+'T00:00:00'),period=$('planExportPeriod').value;
+ let aDate,bDate;
+ if(period==='week'){let offset=(anchor.getDay()+6)%7;aDate=new Date(anchor);aDate.setDate(anchor.getDate()-offset);bDate=new Date(aDate);bDate.setDate(aDate.getDate()+6)}
+ else{aDate=new Date(anchor.getFullYear(),anchor.getMonth(),1);bDate=new Date(anchor.getFullYear(),anchor.getMonth()+1,0)}
+ let a=iso(aDate),b=iso(bDate),type=$('planExportType').value,value=$('planExportValue').value;
+ let rows=plans.filter(x=>x.work_date>=a&&x.work_date<=b&&(!value||x[type]===value)).sort((x,y)=>x.work_date.localeCompare(y.work_date)||x.start_time.localeCompare(y.start_time)||String(x.company||'').localeCompare(String(y.company||''),'vi'));
+ if(!rows.length)return notify('Không có ca dự kiến phù hợp trong khoảng đã chọn.');
+ let fmtDate=d=>{let z=new Date(d+'T00:00:00');return z.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit'})};
+ let weekday=d=>['CN','T2','T3','T4','T5','T6','T7'][new Date(d+'T00:00:00').getDay()];
+ let out;
+ if(type==='company'&&value)out=value+'\\n'+rows.map(x=>weekday(x.work_date)+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)).join('\\n');
+ else if(type==='position'&&value)out=value+'\\n'+rows.map(x=>weekday(x.work_date)+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)+' · '+x.company).join('\\n');
+ else out=rows.map(x=>x.company+' '+fmtDate(x.work_date)+' '+timeHM(x.start_time)+'-'+timeHM(x.end_time)).join('\\n');
+ const fallbackCopy=()=>{
+  let area=document.createElement('textarea');area.value=out;area.setAttribute('readonly','');area.style.position='fixed';area.style.left='-9999px';area.style.top='0';document.body.appendChild(area);area.focus();area.select();area.setSelectionRange(0,area.value.length);
+  let copied=false;try{copied=document.execCommand('copy')}catch(e){}
+  area.remove();
+  if(copied){hide('planExportModal');notify('Đã sao chép lịch dự kiến theo đúng định dạng.')}
+  else{let manual=prompt('Trình duyệt chưa cho phép sao chép tự động. Hãy sao chép nội dung lịch bên dưới:',out);if(manual!==null){hide('planExportModal')}}
+ };
+ if(navigator.clipboard&&window.isSecureContext&&navigator.clipboard.writeText){
+  navigator.clipboard.writeText(out).then(()=>{hide('planExportModal');notify('Đã sao chép lịch dự kiến theo đúng định dạng.')}).catch(fallbackCopy);
+ }else fallbackCopy();
+}
 let financeTransactions=[],financeGoals=[],financeTemplates=[],financeCategories=[],financeAccounts=[],financeReady=false,financeMonth=iso(new Date()),financeSelectedJob='';
 async function loadFinanceData(){
  if(!user||!sb)return false;
