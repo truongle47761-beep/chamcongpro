@@ -21,6 +21,7 @@ window.addEventListener('error', function(e) {
   }
 }, true);
 </script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onerror="this.onerror=null;this.src='https://unpkg.com/@supabase/supabase-js@2'"></script>
 <style>
 :root{--ink:#28243a;--muted:#858096;--purple:#8064c8;--pale:#f2edff;--line:#eeeaf5;--bg:#f8f7fb;--white:#fff;--green:#4f9b7a;--red:#c65c70}
@@ -1907,16 +1908,51 @@ function createFilteredPDF(){
  }).join('');
  const overview='<section class="pdf-overview"><h2>THÔNG TIN TỔNG QUÁT</h2><p><b>Tên công việc - Vị trí:</b> <strong>'+esc(jobLabel)+'</strong></p><p><b>Tổng giờ làm Hoàn thành:</b> <strong>'+fmt(completedMinutes)+'</strong></p><p><b>Tổng giờ làm Chưa Hoàn thành:</b> <strong>'+fmt(uncompletedMinutes)+'</strong></p><p><b>Phí cộng thêm:</b> <strong>'+money(extra)+'</strong></p><p><b>Mức lương thực lãnh (Lương hoàn thành ca):</b> <strong>'+money(completedPay)+'</strong></p></section>';
  $('pdfExportRoot').innerHTML='<article class="pdf-report"><header><div class="pdf-cat">🐱</div><div><h1>BÁO CÁO CHẤM CÔNG</h1><p>CHẤM CÔNG PRO · '+label+'</p></div></header><p class="pdf-filters">'+(company?'Công việc: '+esc(company):'Tất cả công việc')+(position?' · Vị trí: '+esc(position):'')+'</p>'+overview+'<h2>Tổng hợp theo công việc</h2><table class="pdf-table"><thead><tr><th>Công ty / nơi làm việc</th><th>Vị trí</th><th>Tổng số ca</th><th>Tổng số giờ (giờ đã đăng ký lịch)</th><th>Số giờ đã hoàn thành</th><th>Số giờ chưa hoàn thành</th><th>Lương cơ bản</th><th>Phí cộng thêm</th><th>Lương + phí cộng thêm</th></tr></thead><tbody>'+summaryRows+'</tbody><tfoot>'+summaryFoot+'</tfoot></table><h2>Chi tiết các ca làm</h2><table class="pdf-table"><thead><tr><th>Ngày</th><th>Ca làm việc</th><th>Trạng thái</th><th>Giờ vào / ra</th><th>Check-in thực tế</th><th>Check-out thực tế</th><th>Giờ theo lịch</th><th>Giờ thực tế</th><th>Mức lương</th><th>Phí cộng thêm</th><th>Tiền cơ bản</th><th>THỰC LÃNH</th><th>Ghi chú</th></tr></thead><tbody>'+detail+'</tbody></table><footer>Được tạo từ CHẤM CÔNG PRO · '+new Date().toLocaleDateString('vi-VN')+'</footer></article>';
- const isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
- if(isStandalone){
-  const styles=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
-  const reportHTML=$('pdfExportRoot').innerHTML;
-  const payload=encodeURIComponent(JSON.stringify({styles,reportHTML}));
-  closeExportModal();
-  window.location.href='x-safari-https://truongle47761-beep.github.io/chamcongpro/print.html#'+payload;
+ closeExportModal();
+ downloadReportPDF(label);
+}
+
+async function downloadReportPDF(label){
+ if(typeof window.html2pdf!=='function'){
+  notify('Chưa tải được bộ tạo PDF. Hãy kiểm tra kết nối mạng rồi thử lại.');
   return;
  }
- window.print();closeExportModal();
+ const source=$('pdfExportRoot');
+ const clone=source.cloneNode(true);
+ clone.id='pdfExportRoot';
+ clone.style.cssText='display:block!important;position:relative!important;inset:auto!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:#fff!important;visibility:visible!important';
+ const printRules=[];
+ function collectPrintRules(rules){
+  for(const rule of Array.from(rules||[])){
+   if(rule.type===4){
+    const media=rule.conditionText||rule.media?.mediaText||'';
+    if(/print/.test(media))collectPrintRules(rule.cssRules);
+   }else if(rule.type===1){printRules.push(rule.cssText)}
+  }
+ }
+ for(const sheet of Array.from(document.styleSheets)){
+  try{collectPrintRules(sheet.cssRules)}catch(e){}
+ }
+ const host=document.createElement('div');
+ host.style.cssText='position:fixed;left:-20000px;top:0;width:1600px;background:#fff;z-index:-1;visibility:visible';
+ const style=document.createElement('style');
+ style.textContent=printRules.join('\n')+'\nhtml,body{background:#fff!important;margin:0!important;padding:0!important}body *{visibility:visible!important}#pdfExportRoot{display:block!important;position:relative!important;inset:auto!important;width:100%!important;max-width:none!important;background:#fff!important}.pdf-report{width:100%!important;max-width:none!important}';
+ host.appendChild(style);host.appendChild(clone);document.body.appendChild(host);
+ const safeLabel=String(label||'').replace(/[^0-9a-zA-ZÀ-ỹ_-]+/g,'-').replace(/^-|-$/g,'');
+ try{
+  await window.html2pdf().set({
+   margin:8,
+   filename:'Cham-cong-'+(safeLabel||'bao-cao')+'.pdf',
+   image:{type:'jpeg',quality:0.98},
+   html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',windowWidth:1600,scrollX:0,scrollY:0},
+   jsPDF:{unit:'mm',format:'a3',orientation:'landscape'},
+   pagebreak:{mode:['css','legacy']}
+  }).from(clone).save();
+  notify('Đã tạo và tải file PDF về máy.');
+ }catch(error){
+  console.error('PDF export failed:',error);
+  notify('Chưa tạo được PDF. Bà hãy thử lại khi kết nối mạng ổn định nhé.');
+ }finally{host.remove()}
 }
 
 function changeStatsPeriod(){
