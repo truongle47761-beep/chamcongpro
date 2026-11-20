@@ -1981,7 +1981,7 @@ function copyPlanning(){
    else lines.push(weekday(date)+' '+shortDate(date)+' OFF');
   }
  }
- const out=lines.join('\\n');
+ const out=lines.join('\n');
  $('planExportResult').value=out;
  $('planExportResultWrap').classList.remove('hidden');
  $('planExportResult').scrollTop=0;
