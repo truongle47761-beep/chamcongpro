@@ -1909,14 +1909,11 @@ function createFilteredPDF(){
  $('pdfExportRoot').innerHTML='<article class="pdf-report"><header><div class="pdf-cat">🐱</div><div><h1>BÁO CÁO CHẤM CÔNG</h1><p>CHẤM CÔNG PRO · '+label+'</p></div></header><p class="pdf-filters">'+(company?'Công việc: '+esc(company):'Tất cả công việc')+(position?' · Vị trí: '+esc(position):'')+'</p>'+overview+'<h2>Tổng hợp theo công việc</h2><table class="pdf-table"><thead><tr><th>Công ty / nơi làm việc</th><th>Vị trí</th><th>Tổng số ca</th><th>Tổng số giờ (giờ đã đăng ký lịch)</th><th>Số giờ đã hoàn thành</th><th>Số giờ chưa hoàn thành</th><th>Lương cơ bản</th><th>Phí cộng thêm</th><th>Lương + phí cộng thêm</th></tr></thead><tbody>'+summaryRows+'</tbody><tfoot>'+summaryFoot+'</tfoot></table><h2>Chi tiết các ca làm</h2><table class="pdf-table"><thead><tr><th>Ngày</th><th>Ca làm việc</th><th>Trạng thái</th><th>Giờ vào / ra</th><th>Check-in thực tế</th><th>Check-out thực tế</th><th>Giờ theo lịch</th><th>Giờ thực tế</th><th>Mức lương</th><th>Phí cộng thêm</th><th>Tiền cơ bản</th><th>THỰC LÃNH</th><th>Ghi chú</th></tr></thead><tbody>'+detail+'</tbody></table><footer>Được tạo từ CHẤM CÔNG PRO · '+new Date().toLocaleDateString('vi-VN')+'</footer></article>';
  const isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
  if(isStandalone){
-  const printWindow=window.open('','_blank');
-  if(!printWindow){notify('iPhone chưa mở được trang in. Hãy cho phép mở cửa sổ mới cho ứng dụng rồi thử lại.');return}
   const styles=[...document.querySelectorAll('style')].map(x=>x.textContent).join('\n');
   const reportHTML=$('pdfExportRoot').innerHTML;
-  printWindow.document.open();
-  printWindow.document.write('<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Báo cáo chấm công</title><style>'+styles+'\n#pdfExportRoot{display:block!important;padding:16px;background:#fff}.pdf-actions{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:center;gap:12px;padding:12px;background:#fff;border-bottom:1px solid #eee;font:14px -apple-system,BlinkMacSystemFont,sans-serif}.pdf-actions button{border:0;border-radius:12px;padding:12px 18px;background:#8064c8;color:#fff;font-weight:700}.pdf-actions span{color:#666;font-size:12px}@media print{.pdf-actions{display:none!important}#pdfExportRoot{padding:0!important}}</style></head><body><div class="pdf-actions"><button onclick="window.print()">In / Lưu PDF</button><span>Chọn In hoặc Lưu vào Tệp trong menu của iPhone.</span></div><div id="pdfExportRoot">'+reportHTML+'</div></body></html>');
-  printWindow.document.close();
+  const payload=encodeURIComponent(JSON.stringify({styles,reportHTML}));
   closeExportModal();
+  window.location.href='x-safari-https://truongle47761-beep.github.io/chamcongpro/print.html#'+payload;
   return;
  }
  window.print();closeExportModal();
