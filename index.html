@@ -1957,7 +1957,7 @@ $('planForm').onsubmit=async e=>{e.preventDefault();let id=$('planEditId').value
 function editPlan(id){openPlanForm(plans.find(x=>x.id===id))}async function deletePlan(id){if(!confirm('Xóa ca dự kiến này?'))return;let r=await sb.from('planned_shifts').delete().eq('id',id);if(r.error)return notify(r.error.message);await loadAll()}
 function openPlanExport(){$('planExportPeriod').value='week';$('planExportType').value='all';updatePlanExportFields();show('planExportModal')}
 function updatePlanExportFields(){let type=$('planExportType').value,field='company',values=[...new Set(plans.map(x=>x[field]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'vi'));$('planExportValueWrap').classList.toggle('hidden',type==='all');$('planExportValue').innerHTML='<option value="">Tất cả</option>'+values.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('')}
-function copyPlanning(){let anchor=new Date(($('planAnchor').valufunction copyPlanning(){
+function copyPlanning(){
  let anchor=new Date(($('planAnchor').value||iso(new Date()))+'T00:00:00'),period=$('planExportPeriod').value;
  let aDate,bDate;
  if(period==='week'){let offset=(anchor.getDay()+6)%7;aDate=new Date(anchor);aDate.setDate(anchor.getDate()-offset);bDate=new Date(aDate);bDate.setDate(aDate.getDate()+6)}
