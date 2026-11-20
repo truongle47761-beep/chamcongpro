@@ -1971,8 +1971,17 @@ function copyPlanning(){
  const groups=new Map();
  rows.forEach(x=>{let name=String(x.company||'Chưa phân công').trim();if(!groups.has(name))groups.set(name,[]);groups.get(name).push(x)});
  const lines=[shortDate(a)+'-'+shortDate(b)];
- for(const [name,list] of groups){lines.push(name);for(const x of list)lines.push(weekday(x.work_date)+' '+shortDate(x.work_date)+' '+shortTime(x.start_time)+'-'+shortTime(x.end_time))}
- const out=lines.join('\n');
+ for(const [name,list] of groups){
+  lines.push(name);
+  const byDate=new Map();
+  list.forEach(x=>{if(!byDate.has(x.work_date))byDate.set(x.work_date,[]);byDate.get(x.work_date).push(x)});
+  for(let day=new Date(aDate);day<=bDate;day.setDate(day.getDate()+1)){
+   const date=iso(day),dayRows=byDate.get(date);
+   if(dayRows&&dayRows.length){for(const x of dayRows)lines.push(weekday(date)+' '+shortDate(date)+' '+shortTime(x.start_time)+'-'+shortTime(x.end_time))}
+   else lines.push(weekday(date)+' '+shortDate(date)+' OFF');
+  }
+ }
+ const out=lines.join('\\n');
  $('planExportResult').value=out;
  $('planExportResultWrap').classList.remove('hidden');
  $('planExportResult').scrollTop=0;
